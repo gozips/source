@@ -13,3 +13,12 @@ type Func func(string) (string, io.ReadCloser, error)
 func (f Func) Readfrom(s string) (string, io.ReadCloser, error) {
 	return f(s)
 }
+
+// Error impelements error and is used to represent gozips source errors
+type Error struct {
+	Message string
+}
+
+func (r Error) Error() string {
+	return r.Message
+}
