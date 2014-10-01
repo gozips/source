@@ -14,11 +14,13 @@ func (f Func) Readfrom(s string) (string, io.ReadCloser, error) {
 	return f(s)
 }
 
-// Error impelements error and is used to represent gozips source errors
-type Error struct {
+// ReadError impelements error and is used to represent source read errors that
+// are outside of the scope of normal io errors. We want to be able to identify
+// and handle these types of errors accordingly
+type ReadError struct {
 	Message string
 }
 
-func (r Error) Error() string {
+func (r ReadError) Error() string {
 	return r.Message
 }
